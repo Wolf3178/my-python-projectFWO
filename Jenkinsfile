@@ -12,6 +12,11 @@ pipeline {
                 sh 'pytest | tee report.txt'
             }
         }
+        stage('push') {
+            sh 'docker build -t wolf31/my-python-app:$BUILD_NUMBER .'
+            sh 'docker login -u $DOCKER_LOGIN -p $DOCKER_PASS'
+            sh 'docker push wolf31/my-python-app:$BUILD_NUMBER'
+        }
     }
 }
 
