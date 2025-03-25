@@ -13,9 +13,11 @@ pipeline {
             }
         }
         stage('push') {
+             steps {
             sh 'docker build -t wolf31/my-python-app:$BUILD_NUMBER .'
             sh 'docker login -u $DOCKER_LOGIN -p $DOCKER_PASS'
             sh 'docker push wolf31/my-python-app:$BUILD_NUMBER'
+             }
         }
     }
 }
