@@ -7,9 +7,9 @@ pipeline {
                 sh 'python3 -m flake8 . --count --show-source --statistics || true'
             }
         }
-            stage('test') {
+        stage('test') {
             steps {
-                pytest | tee report.txt
+                sh 'pytest | tee report.txt'
             }
         }
     }
